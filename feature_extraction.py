@@ -2,7 +2,7 @@ from sklearn.feature_extraction.text import CountVectorizer
 import gensim
 
 
-
+# using pretrain model to embeded a word to vector
 class Word2Vec_custom(object):
     def __init__(self, dir_pretrain_model = './GoogleNews-vectors-negative300.bin'):
         self.model = gensim.models.KeyedVectors.load_word2vec_format(dir_pretrain_model, binary=True)
@@ -13,10 +13,11 @@ class Word2Vec_custom(object):
     def similarity(self, word_one, word_two):
         return self.model.similarity(word_one, word_two)
 
-
+# inherit from countvector of keras
 class CountVectorizer_custom(CountVectorizer):
     pass
 
+# class contain class countvectorizer and class word2vec
 class WordEmbedding(object):
     def CountVectorizer(self):
         model = CountVectorizer_custom()
@@ -27,17 +28,3 @@ class WordEmbedding(object):
         return model
 
 
-
-"""
-a = WordEmbedding().CountVectorizer()
-d = a.fit_transform(['today hi', 'my name is Van Tai'])
-d = d.toarray()
-print(d)
-print(d.shape)
-
-
-a = WordEmbedding().Word2Vec()
-d = a.transform(['my', 'name', 'is'])
-print(d.shape)
-
-"""

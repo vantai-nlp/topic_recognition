@@ -1,23 +1,20 @@
-import os
-
-# load data from file txt
-def load_data(name_file, max_size = 10):
-        category = name_file.split('/')[-2].split('.')[0]
-        file = open(name_file, 'r')
+# load data from file txt, input: file name, output: X, y
+def load_data(dir_file, max_size = 1000):
+        category = dir_file.split('/')[-2].split('.')[0]
+        file = open(dir_file, 'r')
         X = file.readlines()
 
         if len(X) > max_size:
             X = X[:max_size]
 
-        y = [category for i in range(len(category))]
+        y = [category for i in range(len(X))]
         return X, y
 
-# transform text to list of words
-def text2words(text):
-    words = text.split()
-    return words
-
-"""
-X, y = load_data('./dataset/English/Computer/evc.train.en')
-text = 'hi everyone , my name is Van Tai .\n'
-print(text2words(text))"""
+# transform text to list of words, input: texts, output: n rows - each row is a vector of word 
+def text2words(texts):
+    matrix = []
+    for text in texts:
+        words = text.split()
+        matrix.append(words)
+    return matrix
+    
