@@ -1,5 +1,5 @@
 # load data from file txt, input: file name, output: X, y
-def load_data(dir_file, max_size = 1000):
+def load_data(dir_file, max_size = 2000):
         category = dir_file.split('/')[-2].split('.')[0]
         file = open(dir_file, 'r')
         X = file.readlines()

@@ -1,6 +1,6 @@
 from sklearn.naive_bayes import MultinomialNB
 from keras.models import Sequential
-from keras.layers import Dense
+from keras.layers import Dense, Dropout
 
 # inherit from class MultinomialNB from kerass
 class MultinomialNB_custom(MultinomialNB):
@@ -11,7 +11,9 @@ class Neural_Network(object):
     def __init__(self, input_dim, classes):
         self.model = Sequential()
         self.model.add(Dense(1024,input_dim = input_dim, activation = 'relu'))
+        self.model.add(Dropout(0.3))
         self.model.add(Dense(512, activation = 'relu'))
+        self.model.add(Dropout(0.2))
         self.model.add(Dense(128, activation = 'relu'))
         self.model.add(Dense(classes, activation = 'softmax'))
         self.model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
